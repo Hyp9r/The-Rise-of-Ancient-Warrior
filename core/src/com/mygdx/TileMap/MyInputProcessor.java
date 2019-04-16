@@ -44,7 +44,6 @@ public class MyInputProcessor implements InputProcessor {
         Vector2 vector2 = new Vector2();
         vector2.set(screenX, Gdx.graphics.getHeight() - screenY);
         if(vector2 != touchPosition){
-            System.out.println("touch dragged");
             return true;
         }
         return false;

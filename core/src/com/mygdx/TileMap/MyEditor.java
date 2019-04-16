@@ -5,16 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.utils.NumberUtils;
-import com.sun.deploy.util.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static sun.misc.PostVMInitHook.run;
 
-public class MyEditor extends ApplicationAdapter {
+
+public class MyEditor extends ApplicationAdapter{
 
     private Editor editor;
     private int screenHeight = 850; //need this variable since libgdx starts from the left bottom corner
@@ -22,8 +22,8 @@ public class MyEditor extends ApplicationAdapter {
     private ShapeRenderer shapeRenderer;
     public static boolean grid;// if true the editor has grids if false it doesn't
     public Tile[][] map;
-    int width = 40;
-    int height = 40;
+    int width =68;
+    int height = 48;
     int tileSize = 16;
 
     public void create(){
@@ -43,34 +43,17 @@ public class MyEditor extends ApplicationAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         editor.draw();
-        if(Gdx.input.isTouched(Input.Buttons.LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)){
-            int x = Gdx.input.getX();
-            int y = Gdx.input.getY();
-            if(!Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)){
-                int x2 = Gdx.input.getX();
-                int y2 = Gdx.input.getY();
-                if(x > x2){
-                    //crtaj od x2 do x
 
-                }else{
-                    //crtaj x pa onda x2
-                    drawTransparentRectanleForTileSelection(x, y, x2, y2);
-                    //editor.selectTile(Gdx.input.getX(), screenHeight - Gdx.input.getY());
-                    //tileSelected = true;
-                }
-            }
-        }else if(Gdx.input.isTouched(Input.Buttons.LEFT) && Gdx.input.getX() >= 1440-16){
+        if(Gdx.input.isTouched(Input.Buttons.LEFT) && Gdx.input.getX() >= 1440-16){
             editor.selectTile(screenHeight - Gdx.input.getY());
             tileSelected = true;
         }else if(Gdx.input.isTouched(Input.Buttons.LEFT) && tileSelected){
             editor.updateTile(Gdx.input.getX(), screenHeight- Gdx.input.getY());
-            //System.out.println("X: " + Gdx.input.getX() + " Y: " + (40*16+100 - Gdx.input.getY()));
         }else if(Gdx.input.isKeyJustPressed(Input.Keys.G)){
             grid = !grid;
         }else if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.S)){
             saveMapFile();
-        }else if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.O)){
-            //open map file
+        }else if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.O)) {
             loadMap();
             editor.loadMap(map);
             editor.draw();
@@ -78,25 +61,27 @@ public class MyEditor extends ApplicationAdapter {
     }
 
     private void drawTransparentRectanleForTileSelection(int x, int y, int x2, int y2){
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
-        int width = x2 / tileSize - x / tileSize;
-        int height = y2 / tileSize - y2 / tileSize;
-
+        //Gdx.gl.glEnable(GL20.GL_BLEND);
+        //Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
         //draw rect
-
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(220,220, 220, 0.6f);
-        shapeRenderer.rect(Gdx.input.getX()/16*16, (screenHeight - Gdx.input.getY())/16*16, tileSize*width,tileSize*height);
+        shapeRenderer.setColor(1, 1, 0 ,1);
+        //System.out.println("Ovdjeee");
+        /*int rectWidth = (abs(x2 - x))/16*16;
+        int rectHeight = (abs(y2 - y))/16*16;
+        if(rectHeight == 0) rectHeight = 16;
+        if(rectWidth == 0) rectWidth = 16;
+        shapeRenderer.rect(Gdx.input.getX()/16*16, (screenHeight - Gdx.input.getY())/16*16, rectWidth,rectHeight);*/
+        shapeRenderer.rect(Gdx.input.getX()/16*16, (screenHeight - Gdx.input.getY())/16*16, 16,16);
         shapeRenderer.end();
-        Gdx.gl.glDisable(GL20.GL_BLEND);
+        //Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
     private void saveMapFile(){
         //save the map file
         System.out.println("Saving the map file...");
         try{
-            PrintWriter writer = new PrintWriter("./maps/palletTown.map", "UTF-8");
+            PrintWriter writer = new PrintWriter("./maps/woods.map", "UTF-8");
             for(int i=0; i<width; i++){
                 for(int j=0; j<height; j++){
                     writer.print(map[i][j].getId() + ",");

@@ -7,15 +7,19 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.Items.Item;
+import com.mygdx.Pokemon.Pokemon;
 import com.mygdx.TileMap.Map;
 import com.mygdx.TileMap.TileType;
 import com.mygdx.game.MyGdxGame;
+
+import java.util.List;
 
 public class Player {
 
     /*Player data*/
     private int health;
     private Bag playerBag;
+    private List<Pokemon> pokemonList;
     private StateTypes state; //walking, not walking, talking
 
     /*Player graphics data*/
@@ -148,6 +152,15 @@ public class Player {
                 break;
             }
         }
+    }
+
+    public void addPokemon(Pokemon pokemon){
+        if(pokemonList.size() < 6)
+            this.pokemonList.add(pokemon);
+    }
+
+    public List<Pokemon> getPokemonList(){
+        return this.pokemonList;
     }
 
     public int getHealth(){

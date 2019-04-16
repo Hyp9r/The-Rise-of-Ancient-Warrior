@@ -67,7 +67,7 @@ public class Editor {
     public void updateTile(int x, int y){
         int tileIndexX = x / 16;
         int tileIndexY = y / 16;
-        if(tileIndexX > 39 || tileIndexY > 39){
+        if(tileIndexX > width || tileIndexY > height){
             System.out.println("dsadsad");
         }else{
             tiles[tileIndexX][tileIndexY] = selectedTile;
@@ -104,10 +104,10 @@ public class Editor {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             shapeRenderer.setColor(Color.BLACK);
             for(int i=0; i<=height*16; i+= 16){
-                shapeRenderer.line(0, i, 40*16, i);
+                shapeRenderer.line(0, i, width*tileSize, i);
             }
             for(int i=0; i<=width*16; i+= 16){
-                shapeRenderer.line(i, 0, i, 40*16);
+                shapeRenderer.line(i, 0, i, height*tileSize);
             }
             shapeRenderer.end();
         }

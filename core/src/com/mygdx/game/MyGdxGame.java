@@ -12,6 +12,7 @@ import com.mygdx.Characters.Player;
 import com.mygdx.Items.Coin;
 import com.mygdx.Items.Heart;
 import com.mygdx.Items.Potion;
+import com.mygdx.Pokemon.Pokemon;
 import com.mygdx.TileMap.Map;
 
 public class MyGdxGame extends ApplicationAdapter{
@@ -43,6 +44,7 @@ public class MyGdxGame extends ApplicationAdapter{
 		player.getBag().addItem(new Heart(5));
 		player.getBag().addItem(new Coin(1));
 		player.getBag().addItem(new Potion(5));
+		player.addPokemon(new Pokemon(1,3));
 		menu.setPlayer(player);
 		map = new Map(640,640,16);
 		map.loadTileSet();

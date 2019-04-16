@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.Characters.Player;
 import com.mygdx.Items.Item;
+import com.mygdx.Pokemon.Pokemon;
 
 public class Menu {
 
@@ -92,9 +93,10 @@ public class Menu {
             }
             batch.end();
         }else if(currentChoice == STATS_MENU){
-            batch.begin();
-            font.draw(batch, "STATS", 10, 10);
-            batch.end();
+            //get the pokemon details menu
+            for(Pokemon pokemon : player.getPokemonList()){
+                System.out.println(pokemon.getName());
+            }
         }else if(currentChoice == SAVE_MENU){
             batch.begin();
             font.draw(batch, "Saving...", 400, 400);
