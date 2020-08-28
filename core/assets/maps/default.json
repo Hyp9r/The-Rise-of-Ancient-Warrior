@@ -1,0 +1,7 @@
+{
+	"height" : 20,
+	"width" : 20,
+	"tileset" : './tileset.png',
+	"tilesize" : 16,
+	
+}

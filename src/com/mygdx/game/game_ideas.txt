@@ -1,0 +1,34 @@
+-You have certain Role in the start of the game
+    -every Champion has his own 4 moves
+
+-You create your own character as you progress in the game
+    -for example you can have 4 moves that you learn throughout the game there are 30 moves that you're able to learn in every character
+
+Items: -ultra rare(these are obtainable in events and given by the staff)
+       -moves that can be bought or found to learn to your character
+
+
+Characters: -every character starts at Lv.1 and as you level up you gain 3 TP(trainer points) for each level and you can put them in stats you like
+            -you can only have 4 moves
+            -ranged, melee, support,
+
+
+When players want to fight, they just challenge other player and they're taken to Arena where the winner gets something...
+
+
+
+Special events:
+    -other kind of money when you farm the island
+    -special items that can be bought at that island with that money
+    -special spawns of items and monsters
+    -special caves
+    -special houses and mini event that you can participate with special items
+TODO: -finish the map editor
+TODO: -start writing server side
+TODO: -rework the collision detection and movement and animation
+TODO: -adding in game stuff
+
+
+TODO: Battle system: - when the player is walking on grass tile, have a % chance to find a pokemon
+                     - when the condition is true, get the player into battle state and show pokemon that can be found on this map
+                     -

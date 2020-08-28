@@ -9,15 +9,15 @@ public class DesktopLauncher {
 
 
 	public static void main (String[] arg) {
-		/*LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Game";
 		config.width = 1080;
 		config.height = 768;
-		new LwjglApplication(new MyGdxGame(), config);*/
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		new LwjglApplication(new MyGdxGame(), config);
+		/*LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Editor";
 		config.width = 1440;
 		config.height = 850;
-		new LwjglApplication(new MyEditor(), config);
+		new LwjglApplication(new MyEditor(), config);*/
 	}
 }
